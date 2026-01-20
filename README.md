@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CMS Global - Registry System 💎
 
-## Getting Started
+CMS Global is a premium, high-performance **Compliment & Complaint Management System** designed for modern organizations. It features a stunning 'spectral' dark-mode UI, secure authentication, and an advanced automated notification engine.
 
-First, run the development server:
+![Landing Page](public/screenshots/landing.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 System Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The system provides a seamless bridge between users and organizations, ensuring transparency, accountability, and fast resolution.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Key Features
+- **Premium 'Image UI' Design**: Immersive dark mode with spectral radial glows and glassmorphism.
+- **Smart Audit Engine**: Comprehensive tracking of all organizational activity.
+- **Automated Notification Engine**: Professional 'short & best' email notifications for status updates and alerts.
+- **Role-Based Access**: Specialized dashboards for Users, Admins, and Super Admins.
+- **Secure Verification**: Identity-first signup flow with OTP verification.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🍱 Visual Showcase
 
-## Learn More
+| Login Experience | Secure Registration |
+| :---: | :---: |
+| ![Login Page](public/screenshots/login.png) | ![Signup Page](public/screenshots/register.png) |
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
+- **Framework**: Next.js 15 (App Router)
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: NextAuth.js
+- **Styling**: Vanilla CSS & TailwindCSS
+- **Mail Engine**: Nodemailer with Custom Premium Templates
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔒 Security
+Your privacy is our priority. Credentials and sensitive logic are strictly protected by environment masking and secure session management.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Built with passion by **abdiqani dahir abdullahi [paldoz]**
