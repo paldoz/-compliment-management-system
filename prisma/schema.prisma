@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id             String         @id @default(uuid())
+  name           String?
+  username       String?        @unique
+  email          String         @unique
+  password       String?
+  image          String?
+  gender         String?        @default("MALE")
+  role           String         @default("USER")
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  otpCode        String?
+  resetCode      String?
+  isVerified     Boolean        @default(false)
+  organizationId String?
+  departmentId   String?
+  auditLogs      AuditLog[]
+  comments       Comment[]
+  complaints     Complaint[]
+  resolvedComplaints Complaint[] @relation("ResolvedBy")
+  notifications  Notification[]
+  department     Department?    @relation(fields: [departmentId], references: [id])
+  organization   Organization?  @relation(fields: [organizationId], references: [id])
+}
+
+model Organization {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  slug        String       @unique
+  description String?
+  isActive    Boolean      @default(true)
+  isVerified  Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  complaints  Complaint[]
+  departments Department[]
+  users       User[]
+}
+
+model Department {
+  id             String       @id @default(uuid())
+  name           String
+  slug           String
+  description    String?
+  isActive       Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organizationId String
+  complaints     Complaint[]
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  users          User[]
+
+  @@unique([organizationId, name])
+  @@unique([organizationId, slug])
+}
+
+model Complaint {
+  id             String        @id @default(uuid())
+  title          String
+  description    String
+  status         String        @default("PENDING")
+  priority       String        @default("MEDIUM")
+  userId         String
+  organizationId String?
+  departmentId   String?
+  category       String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  attachments    Attachment[]
+  auditLogs      AuditLog[]
+  comments       Comment[]
+  department     Department?   @relation(fields: [departmentId], references: [id])
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resolvedBy     User?         @relation("ResolvedBy", fields: [resolvedByUserId], references: [id])
+  resolvedByUserId String?
+  rating         Int?          // 1-5 stars
+  feedback       String?
+}
+
+model Attachment {
+  id          String    @id @default(uuid())
+  url         String
+  name        String
+  type        String
+  complaintId String
+  complaint   Complaint @relation(fields: [complaintId], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id          String    @id @default(uuid())
+  content     String
+  userId      String
+  complaintId String
+  createdAt   DateTime  @default(now())
+  complaint   Complaint @relation(fields: [complaintId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id          String     @id @default(uuid())
+  action      String
+  entity      String
+  entityId    String
+  userId      String
+  details     String?
+  createdAt   DateTime   @default(now())
+  complaintId String?
+  complaint   Complaint? @relation(fields: [complaintId], references: [id], onDelete: Cascade)
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  title     String
+  message   String
+  type      String   @default("INFO")
+  isRead    Boolean  @default(false)
+  userId    String
+  link      String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PendingUser {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  name      String?
+  otpCode   String
+  createdAt DateTime @default(now())
+}
