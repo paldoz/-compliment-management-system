@@ -249,6 +249,7 @@ export default function DepartmentsPage() {
                             </div>
                         </form>
                     </div>
+                </DialogContent>
             </Dialog>
 
             <div className="relative group px-2">
@@ -407,6 +408,6 @@ export default function DepartmentsPage() {
                     </div>
                 </DialogContent>
             </Dialog>
-        </div >
+        </div>
     )
 }
