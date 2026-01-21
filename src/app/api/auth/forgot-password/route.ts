@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server"
 import { prisma } from "@/lib/db"
+import { unstable_noStore as noStore } from "next/cache"
 
 export const dynamic = "force-dynamic"
 
 export async function POST(req: Request) {
+    noStore()
     try {
         const { email } = await req.json()
 
