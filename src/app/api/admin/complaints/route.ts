@@ -5,9 +5,13 @@ import { prisma } from "@/lib/db"
 import { sendComplaintStatusUpdateEmail, sendSuperAdminUpdateEmail, sendAuditLogNotification } from "@/lib/mail"
 
 export async function GET(req: Request) {
+    const session = await getServerSession(authOptions)
     if (!session || !session.user) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
+
+    const { searchParams } = new URL(req.url)
+    const status = searchParams.get("status")
 
     // Verify Role from DB (Fresh Data)
     const user = await prisma.user.findUnique({

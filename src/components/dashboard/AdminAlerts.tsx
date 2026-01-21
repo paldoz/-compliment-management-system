@@ -13,8 +13,14 @@ interface Admin {
     ignoredCount: number
 }
 
+interface Alert {
+    type: 'RATING' | 'UNRESOLVED' | 'IGNORED'
+    admin: Admin
+    message: string
+}
+
 export function AdminAlerts({ admins }: { admins: Admin[] }) {
-    const alerts = []
+    const alerts: Alert[] = []
 
     admins.forEach(admin => {
         // 1. Low Rating Alert

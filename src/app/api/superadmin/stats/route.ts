@@ -156,7 +156,7 @@ export async function GET() {
             recentOrganizations: processedOrgs,
             departmentVolume: finalDeptVolume,
             auditLogs,
-            resolvedComplaints: resolvedComplaintsList
+            resolvedComplaintsList: resolvedComplaintsList
         })
     } catch (error) {
         console.error("Global stats error:", error)

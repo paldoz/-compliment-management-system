@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { cookies } from "next/headers"
 import { prisma } from "@/lib/db"
 import { decrypt } from "@/lib/crypto"
 import { sendAccountCreatedEmail } from "@/lib/mail"
@@ -11,8 +12,8 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Missing fields" }, { status: 400 })
         }
 
-        // Read registration data from cookie
-        const pendingCookie = req.cookies?.get("pending_registration")?.value
+        const cookieStore = await cookies()
+        const pendingCookie = cookieStore.get("pending_registration")?.value
 
         if (!pendingCookie) {
             // Check if already verified (fail-safe)
