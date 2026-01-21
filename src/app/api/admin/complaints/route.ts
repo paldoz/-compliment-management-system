@@ -5,9 +5,9 @@ import { prisma } from "@/lib/db"
 import { sendComplaintStatusUpdateEmail, sendSuperAdminUpdateEmail, sendAuditLogNotification } from "@/lib/mail"
 
 export async function GET(req: Request) {
-    const session = await getServerSession(authOptions)
-    const { searchParams } = new URL(req.url)
-    const status = searchParams.get("status")
+    if (!session || !session.user) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
 
     // Verify Role from DB (Fresh Data)
     const user = await prisma.user.findUnique({
@@ -79,6 +79,10 @@ export async function GET(req: Request) {
 
 export async function PATCH(req: Request) {
     const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
     // Verify Role from DB
     const user = await prisma.user.findUnique({
         where: { id: session.user.id },

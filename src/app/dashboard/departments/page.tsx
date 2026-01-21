@@ -48,9 +48,35 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { cn } from "@/lib/utils"
 
+interface DepartmentUser {
+    id: string
+    name: string
+    email: string
+}
+
+interface Department {
+    id: string
+    name: string
+    slug: string
+    description: string | null
+    isActive: boolean
+    createdAt: string
+    users?: DepartmentUser[]
+    _count?: {
+        complaints: number
+    }
+}
+
+interface AvailableUser {
+    id: string
+    name: string
+    email: string
+    role: string
+}
+
 export default function DepartmentsPage() {
-    const [departments, setDepartments] = useState<any[]>([])
-    const [availableUsers, setAvailableUsers] = useState<any[]>([])
+    const [departments, setDepartments] = useState<Department[]>([])
+    const [availableUsers, setAvailableUsers] = useState<AvailableUser[]>([])
     const [loading, setLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState("")
     const [isCreateOpen, setIsCreateOpen] = useState(false)
@@ -68,7 +94,7 @@ export default function DepartmentsPage() {
             const deptData = await deptRes.json()
             const userData = await userRes.json()
             setDepartments(deptData)
-            setAvailableUsers(userData.filter((u: any) => u.role !== "SUPER_ADMIN"))
+            setAvailableUsers(userData.filter((u: AvailableUser) => u.role !== "SUPER_ADMIN"))
         } catch (err) {
             console.error(err)
         } finally {
@@ -291,7 +317,7 @@ export default function DepartmentsPage() {
                                         <TableCell className="max-w-[200px]">
                                             <div className="flex flex-wrap gap-1.5">
                                                 {dept.users && dept.users.length > 0 ? (
-                                                    dept.users.map((u: any) => (
+                                                    dept.users.map((u: DepartmentUser) => (
                                                         <Badge key={u.id} className="bg-blue-50/50 text-primary hover:bg-blue-50 rounded-lg border border-blue-100/50 text-[9px] font-bold uppercase py-1 px-2.5">
                                                             {u.name}
                                                         </Badge>
