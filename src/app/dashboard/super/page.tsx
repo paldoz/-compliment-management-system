@@ -448,30 +448,30 @@ export default function SuperDashboard() {
                                     className="bg-white rounded-[2rem] p-6 md:p-8 border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-900/5 transition-all group animate-in fade-in slide-in-from-bottom-8 fill-mode-both dark:bg-slate-900 dark:border-slate-800 dark:shadow-none dark:hover:bg-slate-800"
                                     style={{ animationDelay: `${idx * 150}ms` }}
                                 >
-                                    <div className="flex items-center gap-6 md:gap-10">
-                                        <div className="h-16 w-[3px] bg-blue-600/10 rounded-full group-hover:bg-blue-600 group-hover:h-20 transition-all duration-500 dark:bg-slate-800"></div>
-                                        <div className="space-y-2">
-                                            <div className="flex items-center gap-4">
-                                                <Badge className="bg-blue-600 text-white font-black text-[9px] uppercase tracking-[0.3em] px-4 py-1.5 rounded-full border-none shadow-lg shadow-blue-600/20 italic">
+                                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 md:gap-10 flex-1 min-w-0">
+                                        <div className="hidden lg:block h-16 w-[3px] bg-blue-600/10 rounded-full group-hover:bg-blue-600 group-hover:h-20 transition-all duration-500 dark:bg-slate-800"></div>
+                                        <div className="space-y-2 w-full min-w-0">
+                                            <div className="flex flex-wrap items-center gap-3 md:gap-4">
+                                                <Badge className="bg-blue-600 text-white font-black text-[9px] uppercase tracking-[0.3em] px-4 py-1.5 rounded-full border-none shadow-lg shadow-blue-600/20 italic whitespace-nowrap">
                                                     {log.action}
                                                 </Badge>
                                                 <span className="text-[10px] font-black text-slate-300 tabular-nums uppercase tracking-widest dark:text-slate-600">{mounted ? new Date(log.createdAt).toLocaleString().toUpperCase() : ""}</span>
                                             </div>
-                                            <h3 className="text-2xl font-black tracking-tighter text-slate-800 group-hover:text-blue-600 transition-colors uppercase italic dark:text-slate-200 dark:group-hover:text-blue-400">
-                                                {log.entity}: <span className="text-slate-400 font-bold dark:text-slate-500">{log.details || "No additional details"}</span>
+                                            <h3 className="text-lg md:text-2xl font-black tracking-tighter text-slate-800 group-hover:text-blue-600 transition-colors uppercase italic dark:text-slate-200 dark:group-hover:text-blue-400 break-words leading-tight">
+                                                {log.entity}: <span className="text-slate-400 font-bold dark:text-slate-500 not-italic lowercase break-all">{log.details || "No additional details"}</span>
                                             </h3>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-4 px-6 py-3 bg-slate-950 rounded-2xl border border-white/5 shadow-xl">
-                                        <Avatar className="h-8 w-8 rounded-xl border border-white/10">
+                                    <div className="flex items-center gap-4 px-4 py-2 bg-slate-950 rounded-2xl border border-white/5 shadow-xl self-start lg:self-center">
+                                        <Avatar className="h-8 w-8 rounded-xl border border-white/10 shrink-0">
                                             <AvatarImage src={log.user.image || `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(log.user.username || log.user.name)}&top=${log.user.gender === 'FEMALE' ? 'longButNotTooLong,straight01,straight02' : 'shortFlat,shortRound,theCaesar'}`} />
                                             <AvatarFallback className="text-[10px] bg-blue-600 text-white font-black">
                                                 {log.user.name?.[0]}
                                             </AvatarFallback>
                                         </Avatar>
-                                        <div className="flex flex-col">
+                                        <div className="flex flex-col min-w-0">
                                             <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Moderator</span>
-                                            <span className="text-xs font-black text-white uppercase italic tracking-tight">
+                                            <span className="text-xs font-black text-white uppercase italic tracking-tight truncate">
                                                 {log.user.name}
                                             </span>
                                         </div>

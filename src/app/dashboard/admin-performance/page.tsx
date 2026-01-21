@@ -87,7 +87,7 @@ export default function AdminPerformancePage() {
     return (
         <div className="space-y-4 lg:space-y-12 pb-8 md:pb-12">
             {/* World-Class 'Resolution Analytics' Mirror Glass Hero (Compact) */}
-            <div className="relative overflow-hidden group rounded-2xl lg:rounded-[2.5rem] p-6 lg:p-10 bg-slate-950 border border-white/5 shadow-2xl transition-all duration-700 shadow-blue-900/10">
+            <div className="relative overflow-hidden group rounded-2xl lg:rounded-[2.5rem] p-5 lg:p-10 bg-slate-950 border border-white/5 shadow-2xl transition-all duration-700 shadow-blue-900/10 mx-1 lg:mx-0">
                 {/* Branding-Integrated Background Texture */}
                 <div
                     className="absolute inset-0 z-0 opacity-20 bg-cover bg-center transition-transform duration-[20000ms] group-hover:scale-110 contrast-[1.1]"
@@ -107,7 +107,7 @@ export default function AdminPerformancePage() {
                                 <div className="h-[2px] w-12 bg-gradient-to-r from-emerald-500 to-transparent rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
                                 <span className="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.6em] text-emerald-400">Resolution Analytics</span>
                             </div>
-                            <h1 className="text-3xl lg:text-5xl font-black tracking-tighter leading-none text-white uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-white/70 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black tracking-tighter leading-none text-white uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-white/70 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
                                 Admin <span className="text-emerald-500">Performance</span>
                             </h1>
                         </div>
@@ -141,13 +141,15 @@ export default function AdminPerformancePage() {
                 </div>
             </div>
 
-            <AdminAlerts admins={admins} />
+            <div className="px-1 md:px-0 space-y-4 lg:space-y-12">
+                <AdminAlerts admins={admins} />
 
-            <AdminRankings admins={admins} />
+                <AdminRankings admins={admins} />
 
-            <div className="space-y-4">
-                <h2 className="text-lg font-bold text-slate-800 dark:text-white px-1">Detailed Metrics</h2>
-                <AdminMetricsTable admins={admins} />
+                <div className="space-y-4">
+                    <h2 className="text-lg font-bold text-slate-800 dark:text-white px-1">Detailed Metrics</h2>
+                    <AdminMetricsTable admins={admins} />
+                </div>
             </div>
 
             {/* ================================================== */}
@@ -168,17 +170,17 @@ export default function AdminPerformancePage() {
 
             {/* Reports Tabs */}
             <Tabs defaultValue="summary" className="space-y-6">
-                <TabsList className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-1 rounded-xl">
-                    <TabsTrigger value="summary" className="text-xs font-bold data-[state=active]:bg-blue-500 data-[state=active]:text-white rounded-lg px-4">
+                <TabsList className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-1 rounded-xl w-full justify-start overflow-x-auto no-scrollbar">
+                    <TabsTrigger value="summary" className="text-[10px] md:text-xs font-bold data-[state=active]:bg-blue-500 data-[state=active]:text-white rounded-lg px-3 md:px-4 py-2">
                         Summary
                     </TabsTrigger>
-                    <TabsTrigger value="departments" className="text-xs font-bold data-[state=active]:bg-violet-500 data-[state=active]:text-white rounded-lg px-4">
+                    <TabsTrigger value="departments" className="text-[10px] md:text-xs font-bold data-[state=active]:bg-violet-500 data-[state=active]:text-white rounded-lg px-3 md:px-4 py-2">
                         Departments
                     </TabsTrigger>
-                    <TabsTrigger value="organizations" className="text-xs font-bold data-[state=active]:bg-amber-500 data-[state=active]:text-white rounded-lg px-4">
+                    <TabsTrigger value="organizations" className="text-[10px] md:text-xs font-bold data-[state=active]:bg-amber-500 data-[state=active]:text-white rounded-lg px-3 md:px-4 py-2">
                         Organizations
                     </TabsTrigger>
-                    <TabsTrigger value="charts" className="text-xs font-bold data-[state=active]:bg-pink-500 data-[state=active]:text-white rounded-lg px-4">
+                    <TabsTrigger value="charts" className="text-[10px] md:text-xs font-bold data-[state=active]:bg-pink-500 data-[state=active]:text-white rounded-lg px-3 md:px-4 py-2 whitespace-nowrap">
                         Visual Analytics
                     </TabsTrigger>
                 </TabsList>

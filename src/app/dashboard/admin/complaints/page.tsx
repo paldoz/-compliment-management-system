@@ -48,7 +48,7 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select"
-import { cn } from "@/lib/utils"
+import { cn, openBase64InNewTab } from "@/lib/utils"
 
 export default function DeptAdminComplaintsPage() {
     const { data: session } = useSession()
@@ -304,11 +304,10 @@ export default function DeptAdminComplaintsPage() {
                                                                     </h3>
                                                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                                         {selectedComplaint.attachments.map((file: any) => (
-                                                                            <a
+                                                                            <div
                                                                                 key={file.id}
-                                                                                href={file.url}
-                                                                                target="_blank"
-                                                                                className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg hover:shadow-blue-900/5 transition-all group dark:bg-slate-900 dark:border-slate-800 dark:hover:border-blue-500/30"
+                                                                                onClick={() => openBase64InNewTab(file.url)}
+                                                                                className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-lg hover:shadow-blue-900/5 transition-all group dark:bg-slate-900 dark:border-slate-800 dark:hover:border-blue-500/30 cursor-pointer"
                                                                             >
                                                                                 <div className="p-3 bg-blue-50 rounded-xl group-hover:bg-primary group-hover:text-white transition-colors dark:bg-slate-800 dark:group-hover:bg-blue-600">
                                                                                     <Download className="h-5 w-5" />
@@ -317,7 +316,7 @@ export default function DeptAdminComplaintsPage() {
                                                                                     <span className="text-xs font-bold text-slate-900 truncate">{file.name}</span>
                                                                                     <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{file.type}</span>
                                                                                 </div>
-                                                                            </a>
+                                                                            </div>
                                                                         ))}
                                                                     </div>
                                                                 </div>

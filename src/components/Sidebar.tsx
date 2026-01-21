@@ -99,29 +99,38 @@ export function SidebarContent() {
     )
 
     return (
-        <div className="flex h-full flex-col bg-white dark:bg-slate-900">
-            <div className="flex-1 flex flex-col pt-8 px-4 gap-1">
+        <div className="flex h-full flex-col bg-white dark:bg-[#0B1120] relative overflow-hidden transition-colors duration-300">
+            {/* Clean, Premium Background - Subtle gradient for depth */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/50 dark:to-slate-900/20 pointer-events-none" />
+
+            <div className="flex-1 flex flex-col pt-8 px-4 gap-1 relative z-10">
                 <div className="px-4 mb-4">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Main Menu</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 drop-shadow-sm">Main Menu</span>
                 </div>
                 {filteredRoutes.map((route) => (
                     <Link
                         key={route.href}
                         href={route.href}
-                        className={cn(
-                            "group flex items-center gap-3.5 px-4 py-3 text-[13px] font-semibold transition-all rounded-xl",
-                            route.active
-                                ? "bg-blue-50 dark:bg-blue-900/20 text-primary dark:text-blue-400 shadow-sm shadow-blue-900/5"
-                                : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800"
-                        )}
+                    className={cn(
+                        "group flex items-center gap-3.5 px-4 py-3 text-[13px] font-bold rounded-xl transition-all duration-300 ease-out",
+                        route.active
+                            ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 dark:shadow-blue-600/20 border border-blue-500/50"
+                            : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-200"
+                    )}
                     >
-                        <route.icon className={cn("h-4.5 w-4.5", route.active ? "text-primary dark:text-blue-400" : "text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300")} />
-                        {route.label}
+                        <route.icon className={cn(
+                            "h-4.5 w-4.5 transition-all duration-300",
+                            "group-hover:scale-110 group-hover:rotate-3",
+                            route.active
+                                ? "text-white"
+                                : "text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+                        )} />
+                        <span className="drop-shadow-sm transition-all duration-300 group-hover:tracking-wide">{route.label}</span>
                     </Link>
                 ))}
             </div>
 
-            <div className="p-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+            <div className="p-6 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 relative z-10">
                 <div className="flex items-center gap-4 mb-6 px-2">
                     <Avatar className="h-10 w-10 rounded-xl shadow-sm border border-white dark:border-slate-800">
                         <AvatarImage
@@ -154,15 +163,10 @@ export function SidebarContent() {
 
 export function Sidebar() {
     return (
-        <div className="hidden lg:flex h-full w-72 flex-col bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="hidden lg:flex h-full w-72 flex-col bg-white dark:bg-[#0B1120] border-r border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-300">
             <div className="flex h-20 items-center px-8 border-b border-slate-100 dark:border-slate-800 justify-between relative overflow-hidden group">
-                {/* Branding Texture Overlay */}
-                <div
-                    className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] bg-cover bg-center transition-transform duration-[10000ms] group-hover:scale-110 pointer-events-none"
-                    style={{ backgroundImage: "url('/auth-branding-bg.png')" }}
-                />
-                {/* Subtle Blue Pulse Glow */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 blur-[30px] rounded-full -mr-12 -mt-12 animate-pulse pointer-events-none" />
+                {/* Subtle Refined Logo Glow */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/5 dark:bg-blue-400/10 blur-[28px] rounded-full -mr-10 -mt-10 pointer-events-none" />
 
                 <div className="flex items-center gap-3 relative z-10">
                     <div className="h-2.5 w-2.5 rounded-full bg-primary animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />

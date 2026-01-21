@@ -568,7 +568,8 @@ export default function OrganizationsPage() {
                 </div>
             </div>
 
-            <div className="bg-white/40 backdrop-blur-2xl rounded-[3rem] border border-slate-100/50 shadow-2xl shadow-blue-900/5 overflow-hidden mx-2 dark:bg-slate-900/40 dark:border-slate-800/60 dark:shadow-none">
+            {/* Desktop Table View - Hidden on Mobile */}
+            <div className="hidden md:block bg-white/40 backdrop-blur-2xl rounded-[3rem] border border-slate-100/50 shadow-2xl shadow-blue-900/5 overflow-hidden mx-2 dark:bg-slate-900/40 dark:border-slate-800/60 dark:shadow-none">
                 <Table>
                     <TableHeader className="bg-slate-950/5 dark:bg-slate-950/20">
                         <TableRow className="border-slate-100 dark:border-slate-800 hover:bg-transparent">
@@ -685,6 +686,89 @@ export default function OrganizationsPage() {
                     <div className="p-20 text-center space-y-3 opacity-30">
                         <Building2 className="h-12 w-12 mx-auto text-slate-400" strokeWidth={1.5} />
                         <p className="text-[11px] font-bold uppercase tracking-widest">No matching entities in database</p>
+                    </div>
+                )}
+            </div>
+
+            {/* Mobile Card View - Visible only on Small Screens */}
+            <div className="md:hidden space-y-4 px-2">
+                {filteredOrgs.map((org: any, idx: number) => (
+                    <div
+                        key={org.id}
+                        className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 space-y-6 shadow-xl shadow-blue-900/5 animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
+                        style={{ animationDelay: `${idx * 100}ms` }}
+                    >
+                        <div className="flex items-start justify-between">
+                            <div className="space-y-1">
+                                <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase italic tracking-tighter">
+                                    {org.name}
+                                </h3>
+                                <div className="flex items-center gap-2">
+                                    <Badge className={cn(
+                                        "rounded-lg font-black text-[8px] uppercase tracking-[0.2em] px-2 py-0.5",
+                                        org.isActive ? "bg-emerald-500 text-white" : "bg-slate-200 text-slate-500"
+                                    )}>
+                                        {org.isActive ? "Online" : "Archived"}
+                                    </Badge>
+                                    {org.isVerified && (
+                                        <div className="h-5 w-5 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                            <CheckCircle2 className="h-3 w-3 text-blue-500" />
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-slate-300 hover:text-red-500"
+                                onClick={() => handleDeleteOrg(org.id)}
+                            >
+                                <Trash2 className="h-4 w-4" />
+                            </Button>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="p-3 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-slate-100 dark:border-slate-800/50">
+                                <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Structure</span>
+                                <span className="text-xl font-black text-slate-900 dark:text-slate-100 tabular-nums italic">
+                                    {org._count.departments} <span className="text-[10px] text-slate-500">Nodes</span>
+                                </span>
+                            </div>
+                            <div className="p-3 bg-slate-50 dark:bg-slate-950/50 rounded-2xl border border-slate-100 dark:border-slate-800/50">
+                                <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Metrics</span>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-lg font-black text-blue-600 tabular-nums italic">{org._count.users}</span>
+                                    <span className="text-lg font-black text-slate-900 dark:text-white tabular-nums italic">{org._count.complaints}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 pt-2">
+                            <Button
+                                className="flex-1 h-11 rounded-xl bg-slate-950 text-white text-[10px] font-black uppercase tracking-widest italic"
+                                onClick={() => {
+                                    setSelectedOrg(org)
+                                    setIsDeptOpen(true)
+                                }}
+                            >
+                                Infrastructure
+                            </Button>
+                            <Button
+                                className="flex-1 h-11 rounded-xl bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest italic"
+                                onClick={() => {
+                                    setSelectedOrgId(org.id)
+                                    setIsAssignOpen(true)
+                                }}
+                            >
+                                Assign Admin
+                            </Button>
+                        </div>
+                    </div>
+                ))}
+                {filteredOrgs.length === 0 && (
+                    <div className="py-12 text-center space-y-2 opacity-30">
+                        <Building2 className="h-10 w-10 mx-auto text-slate-400" />
+                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">No matching entities</p>
                     </div>
                 )}
             </div>

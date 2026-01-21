@@ -120,7 +120,7 @@ export default function SettingsPage() {
     return (
         <div className="max-w-6xl mx-auto space-y-10 pb-20">
             {/* World-Class 'Security Protocol' Mirror Glass Hero (Compact) */}
-            <div className="relative overflow-hidden group rounded-2xl lg:rounded-[2.5rem] p-6 lg:p-10 bg-slate-950 border border-white/5 shadow-2xl transition-all duration-700 shadow-blue-900/10 mx-1 lg:mx-0">
+            <div className="relative overflow-hidden group rounded-2xl lg:rounded-[2.5rem] p-5 lg:p-10 bg-slate-950 border border-white/5 shadow-2xl transition-all duration-700 shadow-blue-900/10 mx-1 lg:mx-0">
                 {/* Branding-Integrated Background Texture */}
                 <div
                     className="absolute inset-0 z-0 opacity-20 bg-cover bg-center transition-transform duration-[20000ms] group-hover:scale-110"
@@ -138,21 +138,21 @@ export default function SettingsPage() {
                         <div className="space-y-1 lg:space-y-2">
                             <div className="flex items-center gap-5">
                                 <div className="h-[2px] w-12 bg-gradient-to-r from-blue-500 to-transparent rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-                                <span className="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.6em] text-blue-400">Master Identity Hub</span>
+                                <span className="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.6em] text-blue-400">Master Identity Hub</span>
                             </div>
-                            <h1 className="text-3xl lg:text-5xl font-black tracking-tighter leading-none text-white uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-white/70 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black tracking-tighter leading-none text-white uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-white/70 drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
                                 Security <span className="text-blue-500">Protocol</span>
                             </h1>
                         </div>
 
                         <div className="flex flex-wrap items-center gap-4">
-                            <div className="flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-2xl p-2.5 px-6 rounded-2xl">
-                                <div className="h-8 w-8 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/30">
-                                    <Fingerprint className="h-4 w-4 text-blue-400" />
+                            <div className="flex items-center gap-4 bg-white/5 border border-white/10 backdrop-blur-2xl p-2 md:p-2.5 px-4 md:px-6 rounded-2xl">
+                                <div className="h-7 w-7 md:h-8 md:w-8 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/30">
+                                    <Fingerprint className="h-3.5 w-3.5 md:h-4 md:w-4 text-blue-400" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Administrative Node</span>
-                                    <span className="text-sm font-black text-white italic">{session?.user?.name}</span>
+                                    <span className="text-[7px] md:text-[8px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Administrative Node</span>
+                                    <span className="text-xs md:text-sm font-black text-white italic">{session?.user?.name}</span>
                                 </div>
                             </div>
                         </div>
@@ -278,9 +278,9 @@ export default function SettingsPage() {
                 </div>
 
                 {/* Right Panel: Functional Forms */}
-                <div className="lg:col-span-8">
-                    <form onSubmit={handleUpdate} className="space-y-8">
-                        <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-8 md:p-12 border border-slate-100 dark:border-slate-800 shadow-lg space-y-12">
+                <div className="lg:col-span-8 px-1 lg:px-0">
+                    <form onSubmit={handleUpdate} className="space-y-4 lg:space-y-8">
+                        <div className="bg-white dark:bg-slate-900 rounded-3xl lg:rounded-[3rem] p-6 md:p-12 border border-slate-100 dark:border-slate-800 shadow-lg space-y-8 md:space-y-12">
                             {/* Identity Section */}
                             <section className="space-y-8">
                                 <div className="flex items-center gap-4">

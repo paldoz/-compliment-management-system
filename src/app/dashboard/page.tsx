@@ -109,7 +109,7 @@ export default function UserDashboard() {
     return (
         <div className="space-y-4 md:space-y-12 pb-8 md:pb-24 px-1 md:px-0">
             {/* World-Class 'Mirror Glass' Hero Section (Compact) */}
-            <div className="relative overflow-hidden group rounded-2xl md:rounded-[2.5rem] p-6 md:p-10 shadow-2xl transition-all duration-700 hover:shadow-blue-500/20 bg-slate-950 border border-white/5">
+            <div className="relative overflow-hidden group rounded-2xl md:rounded-[2.5rem] p-5 md:p-10 shadow-2xl transition-all duration-700 hover:shadow-blue-500/20 bg-slate-950 border border-white/5 mx-1 md:mx-0">
                 {/* Branding-Integrated Background Texture */}
                 <div
                     className="absolute inset-0 z-0 opacity-20 bg-cover bg-center transition-transform duration-[20000ms] group-hover:scale-110"
@@ -129,7 +129,7 @@ export default function UserDashboard() {
                                 <div className="h-[2px] w-12 bg-gradient-to-r from-blue-500 to-transparent rounded-full" />
                                 <span className="text-[9px] font-black uppercase tracking-[0.5em] text-blue-400/80">Active Security Node</span>
                             </div>
-                            <h1 className="text-3xl lg:text-6xl font-black tracking-tighter text-white uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-emerald-100 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                            <h1 className="text-2xl sm:text-3xl lg:text-6xl font-black tracking-tighter text-white uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-emerald-100 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] leading-none">
                                 Command Center
                             </h1>
                             <div className="flex items-center gap-3 py-1 px-4 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 w-fit">
@@ -142,11 +142,11 @@ export default function UserDashboard() {
                     </div>
 
                     <Link href="/dashboard/complaints/new" className="w-full lg:w-auto group/btn">
-                        <Button className="group relative w-full lg:w-auto h-14 lg:h-20 px-8 lg:px-14 rounded-2xl lg:rounded-[2rem] bg-blue-600 hover:bg-blue-500 text-white transition-all duration-500 font-black overflow-hidden shadow-2xl shadow-blue-600/40 active:scale-95 border border-blue-400/30">
+                        <Button className="group relative w-full lg:w-auto h-12 md:h-14 lg:h-20 px-6 md:px-8 lg:px-14 rounded-xl md:rounded-2xl lg:rounded-[2rem] bg-blue-600 hover:bg-blue-500 text-white transition-all duration-500 font-black overflow-hidden shadow-2xl shadow-blue-600/40 active:scale-95 border border-blue-400/30">
                             <div className="absolute inset-x-0 bottom-0 h-[2px] bg-white/30 transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500" />
-                            <div className="relative flex items-center justify-center gap-4">
-                                <PlusCircle className="h-6 w-6 lg:h-8 lg:w-8 group-hover/btn:rotate-90 transition-transform duration-500" />
-                                <span className="text-sm lg:text-xl uppercase tracking-tighter italic">Initiate Compliment</span>
+                            <div className="relative flex items-center justify-center gap-3 lg:gap-4">
+                                <PlusCircle className="h-5 w-5 lg:h-8 lg:w-8 group-hover/btn:rotate-90 transition-transform duration-500" />
+                                <span className="text-xs lg:text-xl uppercase tracking-tighter italic">Initiate Compliment</span>
                             </div>
                         </Button>
                     </Link>
@@ -254,32 +254,32 @@ export default function UserDashboard() {
             )}
 
             {/* Tactical Metric Grid - Compact 2x2 on mobile */}
-            <div className="grid grid-cols-2 gap-3 lg:gap-8">
+            <div className="grid grid-cols-2 gap-2 sm:gap-4 lg:gap-8 px-1 md:px-0">
                 {cards.map((card, idx) => (
                     <Card
                         key={card.label}
                         onClick={() => handleCardClick(card)}
                         className={cn(
-                            "group relative border-none rounded-2xl lg:rounded-[2rem] p-4 lg:p-8 transition-all duration-500 overflow-hidden shadow-md lg:shadow-xl",
+                            "group relative border-none rounded-xl lg:rounded-[2rem] p-3 sm:p-4 lg:p-8 transition-all duration-500 overflow-hidden shadow-md lg:shadow-xl",
                             "bg-white dark:bg-slate-900/60 dark:border dark:border-slate-800/50 hover:dark:bg-slate-900",
                             idx === 1 && "dark:ring-1 dark:ring-blue-500/30",
                             card.value > 0 && "cursor-pointer active:scale-95 lg:hover:scale-[1.02] lg:hover:shadow-2xl"
                         )}
                     >
                         <div className="hidden md:block absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="flex flex-row items-center justify-between mb-3 lg:mb-8 relative z-10">
-                            <span className="text-[9px] lg:text-[10px] font-black uppercase tracking-wider lg:tracking-[0.2em] text-slate-400 group-hover:text-blue-500 transition-colors truncate">
+                        <div className="flex flex-row items-center justify-between mb-2 lg:mb-8 relative z-10">
+                            <span className="text-[8px] lg:text-[10px] font-black uppercase tracking-wider lg:tracking-[0.2em] text-slate-400 group-hover:text-blue-500 transition-colors truncate">
                                 {card.label}
                             </span>
-                            <div className="h-8 w-8 lg:h-11 lg:w-11 bg-slate-50 rounded-xl lg:rounded-2xl flex items-center justify-center dark:bg-slate-800 ring-1 ring-slate-100 dark:ring-slate-700 shadow-inner group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shrink-0">
-                                <card.icon className="h-4 w-4 lg:h-5 lg:w-5" />
+                            <div className="h-7 w-7 lg:h-11 lg:w-11 bg-slate-50 rounded-lg lg:rounded-2xl flex items-center justify-center dark:bg-slate-800 ring-1 ring-slate-100 dark:ring-slate-700 shadow-inner group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shrink-0">
+                                <card.icon className="h-3.5 w-3.5 lg:h-5 lg:w-5" />
                             </div>
                         </div>
                         <div className="relative z-10">
-                            <div className="text-3xl lg:text-6xl font-black tracking-tighter mb-1 lg:mb-2 tabular-nums dark:text-white transition-transform group-hover:scale-105 duration-500 origin-left">
+                            <div className="text-2xl sm:text-3xl lg:text-6xl font-black tracking-tighter mb-0.5 lg:mb-2 tabular-nums dark:text-white transition-transform group-hover:scale-105 duration-500 origin-left">
                                 {card.value}
                             </div>
-                            <p className="text-[8px] lg:text-[10px] font-bold lg:font-black lg:italic uppercase tracking-wide lg:tracking-widest text-slate-400 lg:text-slate-500 group-hover:text-slate-400 truncate">
+                            <p className="text-[7px] lg:text-[10px] font-bold lg:font-black lg:italic uppercase tracking-wide lg:tracking-widest text-slate-400 lg:text-slate-500 group-hover:text-slate-400 truncate">
                                 {card.desc} <span className="hidden lg:inline">{card.value > 0 && <span className="text-blue-500">→ Click</span>}</span>
                             </p>
                         </div>

@@ -50,7 +50,7 @@ import {
     SelectValue
 } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
-import { cn } from "@/lib/utils"
+import { cn, openBase64InNewTab } from "@/lib/utils"
 import { FeedbackModal } from "@/components/complaints/FeedbackModal"
 
 export default function UserComplaintsPage() {
@@ -285,11 +285,10 @@ export default function UserComplaintsPage() {
                                                                             </h3>
                                                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                                                 {selectedComplaint.attachments.map((file: any) => (
-                                                                                    <a
+                                                                                    <div
                                                                                         key={file.id}
-                                                                                        href={file.url}
-                                                                                        target="_blank"
-                                                                                        className="flex items-center gap-3.5 p-4 rounded-xl border border-slate-100 hover:border-primary/20 hover:bg-slate-50 transition-all bg-white shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:hover:border-blue-500/20"
+                                                                                        onClick={() => openBase64InNewTab(file.url)}
+                                                                                        className="flex items-center gap-3.5 p-4 rounded-xl border border-slate-100 hover:border-primary/20 hover:bg-slate-50 transition-all bg-white shadow-sm dark:bg-slate-900 dark:border-slate-800 dark:hover:border-blue-500/20 cursor-pointer"
                                                                                     >
                                                                                         <div className="p-2.5 bg-slate-50 rounded-lg text-slate-400 dark:bg-slate-800">
                                                                                             <Download className="h-4 w-4" />
@@ -298,7 +297,7 @@ export default function UserComplaintsPage() {
                                                                                             <span className="text-xs font-bold text-slate-700 truncate dark:text-slate-200">{file.name}</span>
                                                                                             <span className="text-[10px] text-slate-400 font-medium uppercase mt-0.5 dark:text-slate-500">{file.type.split('/')[1] || 'FILE'}</span>
                                                                                         </div>
-                                                                                    </a>
+                                                                                    </div>
                                                                                 ))}
                                                                             </div>
                                                                         </div>
