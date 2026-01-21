@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
 import { prisma } from "@/lib/db"
+
+export const dynamic = "force-dynamic"
 import { decrypt } from "@/lib/crypto"
 import { sendAccountCreatedEmail } from "@/lib/mail"
 

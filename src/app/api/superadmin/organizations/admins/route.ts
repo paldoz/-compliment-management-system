@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { sendAdminAssignmentEmail, sendAuditLogNotification } from "@/lib/mail"
 
+export const dynamic = "force-dynamic"
+
 
 export async function POST(req: Request) {
     const session = await getServerSession(authOptions)

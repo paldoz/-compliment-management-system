@@ -4,6 +4,8 @@ import bcrypt from "bcryptjs"
 import { sendVerificationEmail } from "@/lib/mail"
 import { encrypt } from "@/lib/crypto"
 
+export const dynamic = "force-dynamic"
+
 export async function POST(req: Request) {
   try {
     const { email, username, password, name } = await req.json()
