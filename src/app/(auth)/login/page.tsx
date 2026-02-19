@@ -22,19 +22,30 @@ export default function LoginPage() {
         setError("")
 
         try {
+            console.log("Attempting sign in with:", identifier)
             const result = await signIn("credentials", {
                 email: identifier,
                 password: password,
                 redirect: false,
             })
+            console.log("Sign in result:", result)
 
-            if (result?.error) {
+            if (!result) {
+                console.error("signIn returned undefined/null")
+                setError("No response from server. Please try again.")
+                setLoading(false)
+                return
+            }
+
+            if (result.error) {
+                console.error("Sign in error:", result.error)
                 setError("Invalid credentials. Please check your username/email and password.")
                 setLoading(false)
                 return
             }
 
-            if (result?.ok) {
+            if (result.ok) {
+                console.log("Login successful, redirecting to dashboard...")
                 window.location.replace("/dashboard")
                 return
             }

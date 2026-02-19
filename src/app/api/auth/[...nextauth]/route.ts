@@ -8,14 +8,4 @@ export const dynamic = "force-dynamic"
 
 const handler = NextAuth(authOptions)
 
-async function GET(req: any, res: any) {
-    noStore()
-    return await handler(req, res)
-}
-
-async function POST(req: any, res: any) {
-    noStore()
-    return await handler(req, res)
-}
-
-export { GET, POST }
+export { handler as GET, handler as POST }
