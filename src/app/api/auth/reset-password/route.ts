@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db"
 import bcrypt from "bcryptjs"
+import { NextResponse } from "next/server"
 import { unstable_noStore as noStore } from "next/cache"
 
 export const dynamic = "force-dynamic"

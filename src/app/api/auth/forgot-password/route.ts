@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/db"
+import { NextResponse } from "next/server"
 import { unstable_noStore as noStore } from "next/cache"
+import { sendPasswordResetEmail } from "@/lib/mail"
 
 export const dynamic = "force-dynamic"
 
@@ -27,9 +29,10 @@ export async function POST(req: Request) {
             data: { resetCode }
         })
 
-        console.log(`[AUTH] Password Reset Code for ${email}: ${resetCode}`)
+        // Send actual email thru the service
+        await sendPasswordResetEmail(email, resetCode)
 
-        return NextResponse.json({ message: "Reset code generated. Please check console." })
+        return NextResponse.json({ message: "Reset code transmitted to your identity node." })
     } catch (error) {
         console.error("Forgot password error:", error)
         return NextResponse.json({ error: "Internal server error" }, { status: 500 })

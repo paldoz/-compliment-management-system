@@ -425,3 +425,31 @@ export async function sendAuditLogNotification(data: {
   `
   return sendEmail(data.superAdminEmail, `🔔 System Audit Log: ${data.action}`, html)
 }
+// ============================================
+// 8. PASSWORD RESET EMAIL (NEW)
+// ============================================
+export async function sendPasswordResetEmail(email: string, otp: string) {
+  const html = `
+    ${EMAIL_WRAPPER_START}
+    <div style="padding: 30px 24px;">
+      <div style="text-align: center;">
+        <h1 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 900; color: #0f172a; font-style: italic;">Credential Recovery</h1>
+        <p style="margin: 0 0 24px 0; color: #64748b; font-size: 14px; font-weight: 600;">Authorized Reset Sequence for your CMS Node.</p>
+      </div>
+      
+      <div style="background: #f8fafc; border-radius: 16px; padding: 24px; margin: 0 0 24px 0; text-align: center; border: 2px dashed #e2e8f0;">
+        <div style="font-family: 'Courier New', monospace; font-size: 42px; font-weight: 900; letter-spacing: 12px; color: #1e40af; font-style: italic;">
+          ${otp}
+        </div>
+      </div>
+      
+      <div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 0 12px 12px 0;">
+        <p style="margin: 0; font-size: 13px; color: #991b1b; font-weight: 600; line-height: 1.4;">
+          <strong>⚠️ Security Override.</strong> This code will expire soon. If you didn't request this, secure your account immediately.
+        </p>
+      </div>
+    </div>
+    ${EMAIL_WRAPPER_END}
+  `
+  return sendEmail(email, "🔑 CMS Global: Password Reset Sequence", html)
+}

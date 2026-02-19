@@ -379,11 +379,11 @@ export default function SuperDashboard() {
                                     <Loader2 className="h-8 w-8 animate-spin text-emerald-600 dark:text-emerald-400" />
                                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-300 dark:text-slate-700">Scanning Resolved Units...</span>
                                 </div>
-                            ) : (stats as any)?.resolvedComplaints?.length === 0 ? (
+                            ) : (stats as any)?.resolvedComplaintsList?.length === 0 ? (
                                 <div className="text-center py-10 font-medium text-slate-300 italic dark:text-slate-700">
                                     No resolved complaints found in the registry.
                                 </div>
-                            ) : (stats as any)?.resolvedComplaints?.slice(0, 3).map((complaint: any) => (
+                            ) : (stats as any)?.resolvedComplaintsList?.slice(0, 3).map((complaint: any) => (
                                 <div key={complaint.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 md:p-6 bg-slate-50/50 rounded-2xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/10 transition-all group dark:bg-slate-800/50 dark:border-slate-800 dark:hover:border-emerald-500/50">
                                     <div className="flex items-center gap-4 md:gap-5">
                                         <div className="p-3 bg-emerald-100 rounded-xl dark:bg-emerald-500/10 relative overflow-hidden">

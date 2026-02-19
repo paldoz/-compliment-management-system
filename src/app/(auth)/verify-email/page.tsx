@@ -50,122 +50,172 @@ function VerifyEmailForm() {
     }
 
     return (
-        <div className="relative z-10 w-full min-h-screen flex flex-col lg:flex-row">
-            {/* Left Side - Visual Branding (Desktop Only) */}
-            <div className="hidden lg:flex lg:w-3/5 flex-col justify-between p-24 text-white">
-                <div className="flex items-center gap-5 group cursor-default">
-                    <div className="bg-white/5 backdrop-blur-3xl p-4 rounded-[2rem] border border-white/10 shadow-2xl transition-all duration-500 group-hover:bg-white/10 group-hover:scale-110">
-                        <ShieldCheck className="w-12 h-12 text-blue-400 group-hover:text-blue-300 transition-colors" />
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-4xl font-black tracking-tighter uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">CMS Platform</span>
-                        <span className="text-[10px] font-bold text-blue-400/80 uppercase tracking-[0.5em] mt-[-4px]">Security Operations Terminal</span>
-                    </div>
-                </div>
-
-                <div className="max-w-2xl space-y-16">
-                    <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-                        <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-blue-500/10 backdrop-blur-2xl rounded-full border border-blue-500/20 shadow-inner">
-                            <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]" />
-                            <span className="text-[11px] font-black text-blue-100 uppercase tracking-[0.2em]">Multi-Factor Protocol Active</span>
-                        </div>
-
-                        <h1 className="text-[100px] font-black tracking-tighter leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-white bg-[length:200%_auto] select-none animate-in fade-in zoom-in-95 slide-in-from-left-12 duration-1000 delay-200 drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:drop-shadow-[0_0_50px_rgba(59,130,246,0.5)] transition-all cursor-default animate-text-shimmer animate-float">
-                            IDENTITY<br />
-                            VALIDATION<br />
-                            SEQUENCE
-                        </h1>
-
-                        <p className="text-blue-100/60 text-2xl font-light leading-relaxed max-w-xl">
-                            Access to the global registry requires cryptographic validation.
-                            Please enter the priority access token transmitted to your secure node.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-16 pt-16 border-t border-white/5">
-                        <div className="space-y-3 group">
-                            <div className="text-6xl font-black tracking-tighter text-white group-hover:text-blue-400 transition-colors">100%</div>
-                            <div className="flex items-center gap-3">
-                                <div className="h-1.5 w-12 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-                                <div className="text-[11px] font-black text-blue-200/40 uppercase tracking-[0.3em]">Encrypted Channel</div>
-                            </div>
-                        </div>
-                        <div className="space-y-3 group">
-                            <div className="text-6xl font-black tracking-tighter text-white group-hover:text-emerald-400 transition-colors">6-DIGIT</div>
-                            <div className="flex items-center gap-3">
-                                <div className="h-1.5 w-12 bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
-                                <div className="text-[11px] font-black text-blue-200/40 uppercase tracking-[0.3em]">Temporal Token</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-6 opacity-40 hover:opacity-100 transition-opacity">
-                    <div className="h-[1px] w-24 bg-gradient-to-r from-blue-500/50 to-transparent" />
-                    <div className="text-white text-[9px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
-                        EST. 2026 • SECURITY NODE • VALIDATED
-                    </div>
-                </div>
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#020617]">
+            {/* Branding-Integrated Mirror-Glass Background */}
+            <div
+                className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20000ms] scale-110 motion-safe:animate-slow-zoom"
+                style={{ backgroundImage: "url('/auth-branding-bg.png')", backgroundAttachment: 'fixed' }}
+            />
+            {/* Deep Dark & Intense Branding Color Overlays */}
+            <div className="fixed inset-0 z-[1] bg-slate-950/60 overflow-hidden">
+                <div className="absolute top-[-10%] left-[-10%] w-[65%] h-[65%] bg-blue-900/40 blur-[130px] rounded-full animate-pulse duration-[8000ms]" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[80%] h-[80%] bg-emerald-600/30 blur-[150px] rounded-full animate-pulse duration-[10000ms]" />
+                <div className="absolute top-[20%] right-[20%] w-[50%] h-[50%] bg-cyan-400/20 blur-[100px] rounded-full animate-pulse duration-[12000ms]" />
+                <div className="absolute top-[35%] left-[25%] w-[45%] h-[45%] bg-lime-500/20 blur-[120px] rounded-full animate-pulse duration-[15000ms]" />
             </div>
+            {/* Mirror Transparency Layer */}
+            <div className="fixed inset-0 z-[2] bg-slate-950/20 backdrop-blur-[1.5px]" />
+            <div className="hidden lg:block fixed inset-0 z-[3] bg-gradient-to-br from-blue-950/50 via-emerald-950/10 to-slate-950/60" />
 
-            {/* Right Side - Verify Form (Refined Desktop Fit) */}
-            <div className="w-full lg:w-[45%] flex flex-col justify-center p-6 lg:p-20 min-h-screen lg:min-h-0 lg:bg-white lg:dark:bg-slate-900">
-                {/* The "Perfect Fit" Container */}
-                <div className="w-full bg-white dark:bg-slate-900 px-6 py-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-xl lg:max-w-[500px] lg:mx-auto lg:rounded-none lg:bg-transparent lg:p-0 lg:border-none lg:shadow-none animate-in zoom-in-95 duration-1000">
-
-                    <div className="space-y-2 text-center lg:text-left">
-                        <h2 className="text-3xl sm:text-[40px] font-black tracking-tighter text-slate-900 dark:text-white leading-none">Verify Email</h2>
-                        <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-widest lg:text-slate-500 lg:dark:text-slate-400 italic">
-                            Access Token sent to <span className="text-primary font-black lowercase not-italic">{email}</span>
-                        </p>
+            {/* Content Container */}
+            <div className="relative z-[10] w-full min-h-screen flex flex-col lg:flex-row">
+                {/* Left Side - Visual Branding (Desktop Only) */}
+                <div className="hidden lg:flex lg:w-[55%] flex-col justify-between p-24 text-white">
+                    <div className="flex items-center gap-5 group cursor-default">
+                        <div className="bg-blue-600/10 backdrop-blur-3xl p-4 rounded-[2rem] border border-blue-200/50 shadow-2xl transition-all duration-500 group-hover:bg-blue-600/20 group-hover:scale-110">
+                            <ShieldCheck className="w-12 h-12 text-blue-600 transition-colors" />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-4xl font-black tracking-tighter uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-blue-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">CMS Platform</span>
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.5em] mt-[-4px]">Security Operations Terminal</span>
+                        </div>
                     </div>
 
-                    <form onSubmit={handleVerify} className="space-y-8 mt-12">
-                        {error && (
-                            <div className="bg-red-500/10 border border-red-500/20 p-5 rounded-3xl flex items-start gap-4 backdrop-blur-xl animate-shake">
-                                <div className="space-y-1 w-full text-center">
-                                    <div className="font-black text-xs uppercase tracking-widest text-red-200">Validation Failure</div>
-                                    <p className="text-xs text-red-300/60 leading-tight">{error}</p>
+                    <div className="max-w-2xl space-y-16">
+                        <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
+                            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-blue-500/10 backdrop-blur-2xl rounded-full border border-blue-400/30 shadow-sm">
+                                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+                                <span className="text-[11px] font-black text-cyan-100 uppercase tracking-[0.2em]">Multi-Factor Protocol Active</span>
+                            </div>
+
+                            <h1 className="text-[100px] font-black tracking-tighter leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-100 to-white/90 bg-[length:200%_auto] select-none animate-in fade-in zoom-in-95 slide-in-from-left-12 duration-1000 delay-200 [text-shadow:0_15px_40px_rgba(0,0,0,0.6),0_0_80px_rgba(255,255,255,0.2)] hover:drop-shadow-[0_0_60px_rgba(255,255,255,0.4)] transition-all cursor-default animate-text-shimmer animate-float">
+                                IDENTITY<br />
+                                VALIDATION<br />
+                                SEQUENCE
+                            </h1>
+
+                            <p className="text-white/95 text-2xl font-bold leading-relaxed max-w-xl animate-in fade-in slide-in-from-left-12 duration-1000 delay-500 [text-shadow:0_5px_15px_rgba(0,0,0,0.8)]">
+                                Access to the global registry requires cryptographic validation.
+                                Please enter the priority access token transmitted to your secure node.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-16 pt-16 border-t border-white/10">
+                            <div className="space-y-3 group">
+                                <div className="text-6xl font-black tracking-tighter text-white group-hover:text-cyan-400 transition-colors drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]">100%</div>
+                                <div className="flex items-center gap-3">
+                                    <div className="h-1.5 w-12 bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.5)]" />
+                                    <div className="text-[11px] font-black text-white/50 uppercase tracking-[0.3em]">Encrypted Channel</div>
                                 </div>
                             </div>
-                        )}
-
-                        <div className="space-y-6">
-                            <div className="space-y-4 group text-center">
-                                <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 lg:text-blue-200/50">Access Code</Label>
-                                <Input
-                                    placeholder="000 000"
-                                    maxLength={6}
-                                    value={otpCode}
-                                    onChange={(e) => setOtpCode(e.target.value)}
-                                    className="h-20 sm:h-28 border-slate-200 bg-slate-50 dark:bg-slate-800 dark:border-slate-700 focus:bg-white dark:focus:bg-slate-900 focus:border-primary/50 text-slate-900 dark:text-white transition-all rounded-3xl lg:rounded-[2rem] lg:bg-white/5 lg:border-white/5 lg:text-white lg:dark:bg-slate-950/50 lg:dark:border-slate-800 lg:dark:text-white text-4xl sm:text-[64px] font-black tracking-[0.2em] text-center px-6 placeholder:text-slate-200 dark:placeholder:text-slate-800"
-                                />
+                            <div className="space-y-3 group">
+                                <div className="text-6xl font-black tracking-tighter text-white group-hover:text-emerald-400 transition-colors drop-shadow-[0_5px_15px_rgba(255,255,255,0.2)]">6-DIGIT</div>
+                                <div className="flex items-center gap-3">
+                                    <div className="h-1.5 w-12 bg-emerald-400 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
+                                    <div className="text-[11px] font-black text-white/50 uppercase tracking-[0.3em]">Temporal Token</div>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <Button
-                            type="submit"
-                            className="w-full h-14 sm:h-18 bg-primary hover:bg-blue-500 text-white font-black uppercase tracking-[0.3em] text-[10px] sm:text-[11px] transition-all rounded-[1.5rem] shadow-[0_15px_40px_-10px_rgba(59,130,246,0.6)] active:scale-[0.97] border-none group overflow-hidden relative"
-                            disabled={loading}
-                        >
-                            <span className="relative z-10 flex items-center justify-center gap-3">
-                                {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Authorize Access <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>}
-                            </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                        </Button>
-                    </form>
-
-                    <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col items-center gap-6 lg:border-white/5 lg:mt-12 lg:pt-10">
-                        <div className="flex items-center gap-4 w-full">
-                            <div className="h-[1px] flex-1 bg-slate-100 dark:bg-slate-800 lg:bg-white/5" />
-                            <span className="text-[9px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-[0.4em] lg:text-blue-200/30">Protocol Misfeed?</span>
-                            <div className="h-[1px] flex-1 bg-slate-100 dark:bg-slate-800 lg:bg-white/5" />
+                    <div className="flex items-center gap-6 opacity-40 hover:opacity-100 transition-opacity">
+                        <div className="h-[1px] w-24 bg-gradient-to-r from-cyan-400/50 to-transparent" />
+                        <div className="text-white text-[9px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
+                            EST. 2026 • SECURITY NODE • VALIDATED
                         </div>
-                        <Link href="/signup" className="group flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-slate-900 dark:text-white hover:text-primary transition-all lg:text-white">
-                            <ArrowLeft className="w-5 h-5 lg:w-4 lg:h-4 text-primary" /> Start Over
-                        </Link>
                     </div>
                 </div>
+
+                {/* Right Side - Identity Validation Panel */}
+                <div className="w-full lg:w-[45%] min-h-screen relative flex flex-col justify-center">
+                    <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[40px] border-l border-white/10 hidden lg:block" />
+                    <div className="relative z-10 w-full px-8 py-12 lg:px-20 lg:py-0 max-w-2xl mx-auto lg:max-w-none animate-in fade-in slide-in-from-right-12 duration-1000">
+
+                        <div className="space-y-3 text-center lg:text-left">
+                            <h2 className="text-4xl sm:text-[50px] font-black tracking-tighter text-white leading-none">Validation</h2>
+                            <p className="text-blue-200/50 font-bold text-[10px] sm:text-xs uppercase tracking-[0.4em] italic">
+                                Access Token sent to <span className="text-blue-400 font-black lowercase not-italic">{email}</span>
+                            </p>
+                        </div>
+
+                        <form onSubmit={handleVerify} className="space-y-8 mt-12">
+                            {error && (
+                                <div className="bg-red-500/10 border border-red-500/20 p-5 rounded-3xl flex items-start gap-4 backdrop-blur-xl animate-shake">
+                                    <div className="space-y-1 w-full text-center">
+                                        <div className="font-black text-xs uppercase tracking-widest text-red-200">Validation Failure</div>
+                                        <p className="text-xs text-red-300/60 leading-tight">{error}</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="space-y-6">
+                                <div className="space-y-4 group/input text-center">
+                                    <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-200/50">Access Code</Label>
+                                    <div className="relative">
+                                        <Input
+                                            placeholder="000 000"
+                                            maxLength={6}
+                                            value={otpCode}
+                                            onChange={(e) => setOtpCode(e.target.value)}
+                                            className="h-24 sm:h-32 bg-white/[0.03] border-white/10 focus:border-blue-500/50 focus:bg-white/[0.08] text-white transition-all rounded-3xl lg:rounded-[2rem] text-4xl sm:text-[64px] font-black tracking-[0.2em] text-center px-6 placeholder:text-white/5 shadow-2xl"
+                                        />
+                                        <div className="absolute inset-0 bg-blue-500/5 blur-[20px] opacity-0 group-focus-within/input:opacity-100 transition-opacity pointer-events-none rounded-3xl lg:rounded-[2rem]" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <Button
+                                type="submit"
+                                className="w-full h-14 sm:h-18 bg-primary hover:bg-blue-500 text-white font-black uppercase tracking-[0.3em] text-[10px] sm:text-[11px] transition-all rounded-[1.5rem] shadow-[0_15px_40px_-10px_rgba(59,130,246,0.6)] active:scale-[0.97] border-none group overflow-hidden relative"
+                                disabled={loading}
+                            >
+                                <span className="relative z-10 flex items-center justify-center gap-3">
+                                    {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Authorize Access <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>}
+                                </span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                            </Button>
+                        </form>
+
+                        <div className="mt-12 pt-12 border-t border-white/5 flex flex-col items-center gap-8">
+                            <div className="flex items-center gap-4 w-full">
+                                <div className="h-[1px] flex-1 bg-white/5" />
+                                <span className="text-[9px] font-black text-blue-200/20 uppercase tracking-[0.5em]">Identity Check</span>
+                                <div className="h-[1px] flex-1 bg-white/5" />
+                            </div>
+                            <Link href="/signup" className="group flex items-center gap-4 text-[12px] font-black uppercase tracking-[0.4em] text-white hover:text-blue-400 transition-all">
+                                <ArrowLeft className="w-5 h-5 text-blue-600 group-hover:-translate-x-2 transition-transform" />
+                                Start Identity Enrollment
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                <style jsx global>{`
+                    @keyframes slow-zoom {
+                        0% { transform: scale(1.1); }
+                        50% { transform: scale(1.2); }
+                        100% { transform: scale(1.1); }
+                    }
+                    .motion-safe\:animate-slow-zoom {
+                        animation: slow-zoom 20s linear infinite;
+                    }
+                    @keyframes text-shimmer {
+                        0% { background-position: 0% 50%; }
+                        100% { background-position: 200% 50%; }
+                    }
+                    .animate-text-shimmer {
+                        background-size: 200% auto;
+                        animation: text-shimmer 3s linear infinite;
+                    }
+                    @keyframes float {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-10px); }
+                    }
+                    .animate-float {
+                        animation: float 6s ease-in-out infinite;
+                    }
+                    .h-18 { height: 4.5rem; }
+                `}</style>
             </div>
         </div>
     )
@@ -173,49 +223,13 @@ function VerifyEmailForm() {
 
 export default function VerifyEmailPage() {
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#020617]">
-            {/* Unified Dynamic Background Layer */}
-            <div
-                className="hidden lg:block absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20000ms] scale-110 motion-safe:animate-slow-zoom"
-                style={{ backgroundImage: "url('/auth-login.png')", backgroundAttachment: 'fixed' }}
-            />
-            <div className="absolute inset-0 bg-slate-50 dark:bg-slate-950 lg:bg-slate-950/40 lg:backdrop-blur-[2px] transition-all duration-700 lg:backdrop-blur-none" />
-            <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-slate-950/20 lg:bg-gradient-to-br lg:from-slate-950/90 lg:via-slate-950/40 lg:to-transparent" />
-
-            <Suspense fallback={
-                <div className="relative z-10 w-full min-h-screen flex items-center justify-center">
-                    <Loader2 className="h-12 w-12 animate-spin text-white opacity-20" />
-                </div>
-            }>
-                <VerifyEmailForm />
-            </Suspense>
-
-            <style jsx global>{`
-                @keyframes slow-zoom {
-                    0% { transform: scale(1.1); }
-                    50% { transform: scale(1.2); }
-                    100% { transform: scale(1.1); }
-                }
-                .motion-safe\:animate-slow-zoom {
-                    animation: slow-zoom 20s linear infinite;
-                }
-                @keyframes text-shimmer {
-                    0% { background-position: 0% 50%; }
-                    100% { background-position: 200% 50%; }
-                }
-                .animate-text-shimmer {
-                    background-size: 200% auto;
-                    animation: text-shimmer 3s linear infinite;
-                }
-                @keyframes float {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-10px); }
-                }
-                .animate-float {
-                    animation: float 6s ease-in-out infinite;
-                }
-                .h-18 { height: 4.5rem; }
-            `}</style>
-        </div>
+        <Suspense fallback={
+            <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center gap-4 text-white/40">
+                <Loader2 className="h-8 w-8 animate-spin" />
+                <span className="text-[10px] font-black uppercase tracking-[0.3em]">Validating Node...</span>
+            </div>
+        }>
+            <VerifyEmailForm />
+        </Suspense>
     )
 }

@@ -111,12 +111,12 @@ export function SidebarContent() {
                     <Link
                         key={route.href}
                         href={route.href}
-                    className={cn(
-                        "group flex items-center gap-3.5 px-4 py-3 text-[13px] font-bold rounded-xl transition-all duration-300 ease-out",
-                        route.active
-                            ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 dark:shadow-blue-600/20 border border-blue-500/50"
-                            : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-200"
-                    )}
+                        className={cn(
+                            "group flex items-center gap-3.5 px-4 py-3 text-[13px] font-bold rounded-xl transition-all duration-300 ease-out",
+                            route.active
+                                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 dark:shadow-blue-600/20 border border-blue-500/50"
+                                : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-slate-900 dark:hover:text-slate-200"
+                        )}
                     >
                         <route.icon className={cn(
                             "h-4.5 w-4.5 transition-all duration-300",

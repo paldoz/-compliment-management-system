@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Lock, Loader2, ArrowLeft, Send, Mail } from "lucide-react"
+import { Building2, AlertCircle, Loader2, ArrowLeft, Send, Mail, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
 
 export default function ForgotPasswordPage() {
     const router = useRouter()
@@ -35,6 +35,7 @@ export default function ForgotPasswordPage() {
                     router.push(`/reset-password?email=${email}`)
                 }, 2000)
             } else {
+                // The backend returns "No account found with this email" for 404
                 setError(data.error || "Request failed")
             }
         } catch (err) {
@@ -45,67 +46,172 @@ export default function ForgotPasswordPage() {
     }
 
     return (
-        <div className="min-h-screen bg-white flex items-center justify-center p-6">
-            <Card className="w-full max-w-md rounded-none border-8 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]">
-                <CardHeader className="space-y-4 pt-10 px-10">
-                    <div className="h-16 w-16 bg-black flex items-center justify-center mx-auto mb-4">
-                        <Lock className="h-10 w-10 text-white" />
-                    </div>
-                    <div className="text-center space-y-2">
-                        <CardTitle className="text-3xl font-black uppercase tracking-tighter">Credential Recovery</CardTitle>
-                        <p className="text-zinc-500 font-bold uppercase tracking-widest text-[10px]">Initiating secure password reset loop</p>
-                    </div>
-                </CardHeader>
-                <CardContent className="p-10 pt-0 space-y-8">
-                    {!success ? (
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="space-y-2">
-                                <Label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">System Email</Label>
-                                <div className="relative">
-                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
-                                    <Input
-                                        type="email"
-                                        placeholder="admin@cms.com"
-                                        className="pl-12 h-16 rounded-none border-4 border-zinc-100 focus:border-black font-bold"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                            </div>
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#020617]">
+            {/* Branding-Integrated Mirror-Glass Background */}
+            <div
+                className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20000ms] scale-110 motion-safe:animate-slow-zoom"
+                style={{ backgroundImage: "url('/auth-branding-bg.png')", backgroundAttachment: 'fixed' }}
+            />
+            {/* Deep Dark & Intense Branding Color Overlays */}
+            <div className="fixed inset-0 z-[1] bg-slate-950/60 overflow-hidden">
+                <div className="absolute top-[-10%] left-[-10%] w-[65%] h-[65%] bg-blue-900/40 blur-[130px] rounded-full animate-pulse duration-[8000ms]" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[80%] h-[80%] bg-emerald-600/30 blur-[150px] rounded-full animate-pulse duration-[10000ms]" />
+                <div className="absolute top-[20%] right-[20%] w-[50%] h-[50%] bg-cyan-400/20 blur-[100px] rounded-full animate-pulse duration-[12000ms]" />
+                <div className="absolute top-[35%] left-[25%] w-[45%] h-[45%] bg-lime-500/20 blur-[120px] rounded-full animate-pulse duration-[15000ms]" />
+            </div>
+            {/* Mirror Transparency Layer */}
+            <div className="fixed inset-0 z-[2] bg-slate-950/20 backdrop-blur-[1.5px]" />
+            <div className="hidden lg:block fixed inset-0 z-[3] bg-gradient-to-br from-blue-950/50 via-emerald-950/10 to-slate-950/60" />
 
-                            {error && (
-                                <div className="p-4 bg-zinc-50 border-l-4 border-black animate-in fade-in slide-in-from-left-2">
-                                    <p className="text-[10px] font-black uppercase tracking-widest text-black">{error}</p>
-                                </div>
-                            )}
-
-                            <Button
-                                className="w-full h-16 bg-black hover:bg-zinc-800 text-white font-black uppercase tracking-[0.3em] text-xs transition-all flex gap-3 shadow-[10px_10px_0px_0px_rgba(0,0,0,0.1)] active:translate-x-1 active:translate-y-1 active:shadow-none"
-                                disabled={loading}
-                            >
-                                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-                                Request reset code
-                            </Button>
-                        </form>
-                    ) : (
-                        <div className="p-10 bg-zinc-50/50 flex flex-col items-center justify-center gap-4 text-center">
-                            <div className="h-12 w-12 bg-black flex items-center justify-center">
-                                <Loader2 className="h-6 w-6 text-white animate-spin" />
-                            </div>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-black">Reset code generated. Redirecting to recovery portal...</p>
+            {/* Content Container */}
+            <div className="relative z-[10] w-full min-h-screen flex flex-col lg:flex-row">
+                {/* Left Side - Visual Branding (Desktop Only) */}
+                <div className="hidden lg:flex lg:w-[55%] flex-col justify-between p-24 text-white">
+                    <div className="flex items-center gap-5 group cursor-default">
+                        <div className="bg-blue-600/10 backdrop-blur-3xl p-4 rounded-[2rem] border border-blue-200/50 shadow-2xl transition-all duration-500 group-hover:bg-blue-600/20 group-hover:scale-110">
+                            <Building2 className="w-12 h-12 text-blue-600" />
                         </div>
-                    )}
+                        <div className="flex flex-col">
+                            <span className="text-4xl font-black tracking-tighter uppercase italic bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-100 to-blue-200">CMS Platform</span>
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.5em] mt-[-4px]">Global Registry Architecture</span>
+                        </div>
+                    </div>
 
-                    <Button
-                        variant="ghost"
-                        className="w-full font-black uppercase tracking-widest text-[10px] gap-2 p-0 h-auto hover:bg-transparent"
-                        onClick={() => router.push("/login")}
-                    >
-                        <ArrowLeft className="h-4 w-4" /> Return to Login
-                    </Button>
-                </CardContent>
-            </Card>
+                    <div className="max-w-2xl space-y-16">
+                        <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
+                            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-blue-500/10 backdrop-blur-2xl rounded-full border border-blue-400/30">
+                                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+                                <span className="text-[11px] font-black text-cyan-100 uppercase tracking-[0.2em]">Institutional Transparency Protocol</span>
+                            </div>
+
+                            <h1 className="text-[80px] font-black tracking-tighter leading-[0.8] text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-100 to-white/90 animate-float">
+                                RECOVER<br />
+                                ACCESS<br />
+                                PORTAL
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-6 opacity-40">
+                        <div className="h-[1px] w-24 bg-gradient-to-r from-cyan-400/50 to-transparent" />
+                        <div className="text-white text-[9px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
+                            EST. 2026 • GLOBAL REGISTRY CORE • ENCRYPTED
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Side - Recovery Panel */}
+                <div className="w-full lg:w-[45%] min-h-screen relative flex flex-col justify-center">
+                    <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[40px] border-l border-white/10 hidden lg:block" />
+                    <div className="relative z-10 w-full px-8 py-12 lg:px-20 lg:py-0 max-w-2xl mx-auto lg:max-w-none animate-in fade-in slide-in-from-right-12 duration-1000">
+
+                        <div className="space-y-3 text-center lg:text-left">
+                            <h2 className="text-4xl sm:text-[50px] font-black tracking-tighter text-white leading-none">Recover</h2>
+                            <p className="text-blue-200/50 font-bold text-[10px] sm:text-xs uppercase tracking-[0.4em] italic">Credential Restoration Node</p>
+                        </div>
+
+                        {!success ? (
+                            <form onSubmit={handleSubmit} className="space-y-8 mt-12">
+                                {error && (
+                                    <div className="bg-red-500/10 border border-red-500/20 p-5 rounded-3xl flex items-start gap-4 backdrop-blur-xl animate-shake">
+                                        <AlertCircle className="h-6 w-6 text-red-400 flex-shrink-0" />
+                                        <div className="space-y-1">
+                                            <div className="font-black text-xs uppercase tracking-widest text-red-200">Protocol Failure</div>
+                                            <p className="text-xs text-red-300/60">{error}</p>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="space-y-6">
+                                    <div className="space-y-3 group">
+                                        <Label htmlFor="email" className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-2 lg:text-blue-200/50 lg:group-focus-within:text-primary transition-colors">
+                                            System Email
+                                        </Label>
+                                        <div className="relative group/input">
+                                            <Input
+                                                id="email"
+                                                type="email"
+                                                placeholder="admin@cms.com"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                required
+                                                className="h-16 bg-white/[0.03] border-white/10 focus:border-blue-500/50 focus:bg-white/[0.08] text-white placeholder:text-white/20 transition-all rounded-2xl lg:rounded-[1.2rem] text-lg font-bold px-6 shadow-2xl group-hover/input:border-white/20"
+                                            />
+                                            <div className="absolute inset-0 bg-blue-500/5 blur-[15px] opacity-0 group-focus-within/input:opacity-100 transition-opacity pointer-events-none rounded-2xl lg:rounded-[1.2rem]" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <Button
+                                    type="submit"
+                                    className="w-full h-18 bg-primary hover:bg-blue-500 text-white font-black uppercase tracking-[0.3em] text-[11px] transition-all rounded-[1.5rem] shadow-[0_15px_40px_-10px_rgba(59,130,246,0.6)] active:scale-[0.97] group overflow-hidden relative"
+                                    disabled={loading}
+                                >
+                                    <span className="relative z-10 flex items-center justify-center gap-3">
+                                        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Send className="h-4 w-4" /> Request reset code</>}
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                                </Button>
+                            </form>
+                        ) : (
+                            <div className="mt-12 p-8 bg-blue-500/5 border border-blue-500/10 rounded-3xl flex flex-col items-center justify-center gap-6 text-center animate-in zoom-in-95">
+                                <div className="h-16 w-16 bg-primary/20 rounded-full flex items-center justify-center">
+                                    <Loader2 className="h-8 w-8 text-primary animate-spin" />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="font-black text-xs uppercase tracking-[0.3em] text-primary">Sequence Authorized</div>
+                                    <p className="text-xs text-slate-400 font-bold uppercase tracking-widest leading-relaxed">Reset code generated.<br />Redirecting to recovery portal...</p>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="mt-12 pt-12 border-t border-white/5 flex flex-col items-center gap-8">
+                            <div className="flex items-center gap-4 w-full">
+                                <div className="h-[1px] flex-1 bg-white/5" />
+                                <span className="text-[9px] font-black text-blue-200/20 uppercase tracking-[0.5em]">Safety Protocol</span>
+                                <div className="h-[1px] flex-1 bg-white/5" />
+                            </div>
+                            <Link href="/login" className="group flex items-center gap-4 text-[12px] font-black uppercase tracking-[0.4em] text-white hover:text-blue-400 transition-all">
+                                <ArrowLeft className="w-5 h-5 text-blue-600 group-hover:-translate-x-1 transition-transform" />
+                                Back to Access Portal
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style jsx global>{`
+                @keyframes slow-zoom {
+                    0% { transform: scale(1.1); }
+                    100% { transform: scale(1.25); }
+                }
+                .animate-slow-zoom {
+                    animation: slow-zoom 40s linear infinite alternate;
+                }
+                @keyframes shimmer {
+                    100% { transform: translateX(100%); }
+                }
+                .animate-shimmer {
+                    animation: shimmer 1.5s infinite;
+                }
+                .animate-shake {
+                    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+                }
+                @keyframes shake {
+                    10%, 90% { transform: translate3d(-1px, 0, 0); }
+                    20%, 80% { transform: translate3d(2px, 0, 0); }
+                    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+                    40%, 60% { transform: translate3d(4px, 0, 0); }
+                }
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                .animate-float {
+                    animation: float 6s ease-in-out infinite;
+                }
+                .h-18 { height: 4.5rem; }
+            `}</style>
         </div>
     )
 }

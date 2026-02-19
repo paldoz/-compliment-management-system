@@ -95,21 +95,20 @@ export default function LoginPage() {
     return (
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#020617]">
             {/* Branding-Integrated Mirror-Glass Background */}
-            {/* Branding-Integrated Blue-Green Hybrid Mixture (Login) */}
             <div
-                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20000ms] scale-110 motion-safe:animate-slow-zoom"
+                className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20000ms] scale-110 motion-safe:animate-slow-zoom"
                 style={{ backgroundImage: "url('/auth-branding-bg.png')", backgroundAttachment: 'fixed' }}
             />
             {/* Deep Dark & Intense Green Branding Color Mixture Overlays */}
-            <div className="absolute inset-0 z-[1] bg-slate-950/60 overflow-hidden">
+            <div className="fixed inset-0 z-[1] bg-slate-950/60 overflow-hidden">
                 <div className="absolute top-[-10%] left-[-10%] w-[65%] h-[65%] bg-blue-900/40 blur-[130px] rounded-full animate-pulse duration-[8000ms]" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[80%] h-[80%] bg-emerald-600/30 blur-[150px] rounded-full animate-pulse duration-[10000ms]" />
                 <div className="absolute top-[20%] right-[20%] w-[50%] h-[50%] bg-cyan-400/20 blur-[100px] rounded-full animate-pulse duration-[12000ms]" />
                 <div className="absolute top-[35%] left-[25%] w-[45%] h-[45%] bg-lime-500/20 blur-[120px] rounded-full animate-pulse duration-[15000ms]" />
             </div>
             {/* Mirror Transparency Layer (Deep Darkened) */}
-            <div className="absolute inset-0 z-[2] bg-slate-950/20 backdrop-blur-[1.5px] transition-all duration-700" />
-            <div className="hidden lg:block absolute inset-0 z-[3] bg-gradient-to-br from-blue-950/50 via-emerald-950/10 to-slate-950/60" />
+            <div className="fixed inset-0 z-[2] bg-slate-950/20 backdrop-blur-[1.5px] transition-all duration-700" />
+            <div className="hidden lg:block fixed inset-0 z-[3] bg-gradient-to-br from-blue-950/50 via-emerald-950/10 to-slate-950/60" />
 
             {/* Content Container */}
             <div className="relative z-[10] w-full min-h-screen flex flex-col lg:flex-row">
@@ -170,15 +169,14 @@ export default function LoginPage() {
                     </div>
                 </div>
 
-                {/* Right Side - Login Form (Refined Desktop Fit) */}
-                <div className="w-full lg:w-[45%] flex flex-col justify-center p-6 lg:p-20 min-h-screen lg:min-h-0 lg:bg-white lg:dark:bg-slate-900">
-                    {/* Mobile Branding Peak */}
-                    {/* The "Perfect Fit" Container */}
-                    <div className="w-full bg-white dark:bg-slate-900 px-6 py-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-xl lg:max-w-[520px] lg:mx-auto lg:rounded-none lg:bg-transparent lg:p-0 lg:border-none lg:shadow-none animate-in zoom-in-95 duration-1000">
+                {/* Right Side - Login Panel */}
+                <div className="w-full lg:w-[45%] min-h-screen relative flex flex-col justify-center">
+                    <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-[40px] border-l border-white/10 hidden lg:block" />
+                    <div className="relative z-10 w-full px-8 py-12 lg:px-20 lg:py-0 max-w-2xl mx-auto lg:max-w-none animate-in fade-in slide-in-from-right-12 duration-1000">
 
-                        <div className="space-y-2 text-center lg:text-left">
-                            <h2 className="text-3xl sm:text-[40px] font-black tracking-tighter text-slate-900 dark:text-white leading-none">Sign In</h2>
-                            <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-widest lg:text-slate-500 lg:dark:text-slate-400 italic">Secure Access Transmission</p>
+                        <div className="space-y-3 text-center lg:text-left">
+                            <h2 className="text-4xl sm:text-[50px] font-black tracking-tighter text-white leading-none">Sign In</h2>
+                            <p className="text-blue-200/50 font-bold text-[10px] sm:text-xs uppercase tracking-[0.4em] italic">Accessing Global Registry Node</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="space-y-8 mt-12">
@@ -198,17 +196,17 @@ export default function LoginPage() {
                                         <span className="lg:hidden">Email or Username</span>
                                         <span className="hidden lg:inline">Terminal Identity</span>
                                     </Label>
-                                    <div className="relative">
+                                    <div className="relative group/input">
                                         <Input
                                             id="identifier"
                                             type="text"
-                                            placeholder="Enter your credentials"
+                                            placeholder="Enter identity handle"
                                             value={identifier}
                                             onChange={(e) => setIdentifier(e.target.value)}
                                             required
-                                            className="h-16 border-slate-200 bg-slate-50 dark:bg-slate-800 dark:border-slate-700 focus:bg-white dark:focus:bg-slate-900 focus:border-primary/50 text-slate-900 dark:text-white placeholder:text-slate-400 transition-all rounded-2xl lg:rounded-[1.5rem] lg:bg-white/5 lg:border-white/5 lg:text-white lg:dark:bg-slate-950/50 lg:dark:border-slate-800 lg:dark:text-white text-lg font-bold px-6"
+                                            className="h-16 bg-white/[0.03] border-white/10 focus:border-blue-500/50 focus:bg-white/[0.08] text-white placeholder:text-white/20 transition-all rounded-2xl lg:rounded-[1.2rem] text-lg font-bold px-6 shadow-2xl group-hover/input:border-white/20"
                                         />
-                                        <div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 opacity-20 h-4 w-4 bg-primary rounded-full blur-[8px] animate-pulse pointer-events-none" />
+                                        <div className="absolute inset-0 bg-blue-500/5 blur-[15px] opacity-0 group-focus-within/input:opacity-100 transition-opacity pointer-events-none rounded-2xl lg:rounded-[1.2rem]" />
                                     </div>
                                 </div>
 
@@ -220,7 +218,7 @@ export default function LoginPage() {
                                         </Label>
                                         <Link href="/forgot-password" title="forgot password" className="text-[9px] font-black uppercase tracking-widest text-primary hover:text-blue-400 transition-all">Recover</Link>
                                     </div>
-                                    <div className="relative">
+                                    <div className="relative group/input">
                                         <Input
                                             id="password"
                                             type="password"
@@ -228,8 +226,9 @@ export default function LoginPage() {
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             required
-                                            className="h-16 border-slate-200 bg-slate-50 dark:bg-slate-800 dark:border-slate-700 focus:bg-white dark:focus:bg-slate-900 focus:border-primary/50 text-slate-900 dark:text-white placeholder:text-slate-400 transition-all rounded-2xl lg:rounded-[1.5rem] lg:bg-white/5 lg:border-white/5 lg:text-white lg:dark:bg-slate-950/50 lg:dark:border-slate-800 lg:dark:text-white text-lg font-bold px-6"
+                                            className="h-16 bg-white/[0.03] border-white/10 focus:border-blue-500/50 focus:bg-white/[0.08] text-white placeholder:text-white/20 transition-all rounded-2xl lg:rounded-[1.2rem] text-lg font-bold px-6 shadow-2xl group-hover/input:border-white/20"
                                         />
+                                        <div className="absolute inset-0 bg-emerald-500/5 blur-[15px] opacity-0 group-focus-within/input:opacity-100 transition-opacity pointer-events-none rounded-2xl lg:rounded-[1.2rem]" />
                                     </div>
                                 </div>
                             </div>
@@ -246,14 +245,15 @@ export default function LoginPage() {
                             </Button>
                         </form>
 
-                        <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col items-center gap-6 lg:border-white/5 lg:mt-12 lg:pt-10">
+                        <div className="mt-12 pt-12 border-t border-white/5 flex flex-col items-center gap-8">
                             <div className="flex items-center gap-4 w-full">
-                                <div className="h-[1px] flex-1 bg-slate-100 dark:bg-slate-800 lg:bg-white/5" />
-                                <span className="text-[9px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-[0.4em] lg:text-blue-200/30">New Enrollment?</span>
-                                <div className="h-[1px] flex-1 bg-slate-100 dark:bg-slate-800 lg:bg-white/5" />
+                                <div className="h-[1px] flex-1 bg-white/5" />
+                                <span className="text-[9px] font-black text-blue-200/20 uppercase tracking-[0.5em]">Network Admission</span>
+                                <div className="h-[1px] flex-1 bg-white/5" />
                             </div>
-                            <Link href="/signup" className="group flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-slate-900 dark:text-white hover:text-primary transition-all lg:text-white">
-                                <UserPlus2 className="w-5 h-5 lg:w-4 lg:h-4 text-primary" /> Create Account
+                            <Link href="/signup" className="group flex items-center gap-4 text-[12px] font-black uppercase tracking-[0.4em] text-white hover:text-blue-400 transition-all">
+                                <UserPlus2 className="w-5 h-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                                Create Network Identity
                             </Link>
                         </div>
                     </div>
