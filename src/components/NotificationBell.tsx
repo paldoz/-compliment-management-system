@@ -22,6 +22,14 @@ export function NotificationBell() {
         setLoading(true)
         try {
             const res = await fetch("/api/notifications")
+
+            if (!res.ok) {
+                // Silently handle non-OK responses (e.g. 401 on auth pages)
+                setNotifications([])
+                setUnreadCount(0)
+                return
+            }
+
             const data = await res.json()
 
             if (Array.isArray(data)) {
@@ -33,8 +41,9 @@ export function NotificationBell() {
                 setUnreadCount(0)
             }
         } catch (err) {
-            console.error("Failed to fetch notifications:", err)
+            // Network errors — silently handle
             setNotifications([])
+            setUnreadCount(0)
         } finally {
             setLoading(false)
         }

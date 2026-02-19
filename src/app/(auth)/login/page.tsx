@@ -22,67 +22,25 @@ export default function LoginPage() {
         setError("")
 
         try {
-            // Get CSRF token first
-            const csrfRes = await fetch("/api/auth/csrf")
-            const csrfData = await csrfRes.json()
-            const csrfToken = csrfData.csrfToken
+            const result = await signIn("credentials", {
+                email: identifier,
+                password: password,
+                redirect: false,
+            })
 
-            // Setup timeout
-            const controller = new AbortController()
-            const timeoutId = setTimeout(() => controller.abort(), 60000) // 60s timeout
-
-            try {
-                // Direct POST to NextAuth signin endpoint
-                const res = await fetch("/api/auth/callback/credentials", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: new URLSearchParams({
-                        csrfToken: csrfToken || "",
-                        email: identifier,
-                        password: password,
-                        json: "true",
-                        redirect: "false"
-                    }),
-                    redirect: "manual",
-                    signal: controller.signal
-                })
-                clearTimeout(timeoutId)
-
-                // Read the response text
-                const responseText = await res.text()
-
-                try {
-                    const data = JSON.parse(responseText)
-                    if (data.url) {
-                        if (data.url.includes("error")) {
-                            setError("Invalid credentials.")
-                            setLoading(false)
-                            return
-                        }
-                        window.location.href = "/dashboard"
-                        return
-                    }
-                } catch (e) { }
-
-                if (res.url.includes("error") || responseText.includes("error") || responseText.includes("CredentialsSignin")) {
-                    setError("Invalid credentials. Please check your username/email and password.")
-                    setLoading(false)
-                    return
-                }
-
-                window.location.replace("/dashboard")
-            } catch (err: any) {
-                clearTimeout(timeoutId)
-                if (err.name === 'AbortError') {
-                    setError("Login timed out. Server is not responding.")
-                } else {
-                    console.error("Login error:", err)
-                    setError("Connection error. Please try again.")
-                }
+            if (result?.error) {
+                setError("Invalid credentials. Please check your username/email and password.")
                 setLoading(false)
+                return
             }
+
+            if (result?.ok) {
+                window.location.replace("/dashboard")
+                return
+            }
+
+            setError("Login failed. Please try again.")
+            setLoading(false)
         } catch (err: any) {
             console.error("Login error:", err)
             setError("Connection error. Please try again.")
